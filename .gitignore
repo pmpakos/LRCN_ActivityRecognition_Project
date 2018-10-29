@@ -1,5 +1,5 @@
-__pycache__/
-full_videos_dataset/
-saved_models/
-data_generator/
-results/single_frame_results
+__pycache__/*
+full_videos_dataset/*
+saved_models/*
+data_generator/*
+results/single_frame_results/*
