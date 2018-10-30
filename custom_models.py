@@ -561,10 +561,7 @@ def CaffenetDefault(input_shape, num_labels):
 
 ################################################################
 
-#parameters to check
-lstm_units = 512
-
-def LSTMCaffeDonahueFunctional(seq_input,num_labels):
+def LSTMCaffeDonahueFunctional(seq_input,num_labels,check1024=False):
     #Input
     A = layers.Input(shape=seq_input)
     #### WEIGHT FILLER - KERNEL INITIALIZER ?????
@@ -727,48 +724,51 @@ def LSTMCaffeDonahueFunctional(seq_input,num_labels):
     E = layers.TimeDistributed(layers.Dropout(rate=0.8, noise_shape=None), name='drop6')(E)
 
     #LSTM
+    lstm_units = 512
+    if(check1024==True):
+    	lstm_units = 1024
+		
 
-#     E = layers.CuDNNLSTM(units=lstm_units,
-#                         kernel_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
-#                         recurrent_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
-#                         bias_initializer='zeros',
-#                         unit_forget_bias=True,
-#                         kernel_regularizer=regularizers.l2(weight_decay),
-#                         recurrent_regularizer=None,
-#                         bias_regularizer=None,
-#                         activity_regularizer=None,
-#                         kernel_constraint=None,
-#                         recurrent_constraint=None,
-#                         bias_constraint=None,
-#                         return_sequences=False,
-#                         return_state=False,
-#                         stateful=False,
-#                         name='lstm')(E)
 
-    E = layers.LSTM(units=lstm_units, 
-                activation='tanh', 
-                recurrent_activation='hard_sigmoid', 
-                use_bias=True, 
-                kernel_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
-                recurrent_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
-                bias_initializer='zeros', 
-                unit_forget_bias=True, 
-                kernel_regularizer=regularizers.l2(weight_decay),
-                recurrent_regularizer=None, 
-                bias_regularizer=None,
-                # kernel_constraint=constraints.max_norm(2.),
-                activity_regularizer=None, 
-                recurrent_constraint=None, 
-                bias_constraint=None, 
-                dropout=0.5, 
-                recurrent_dropout=0.5, 
-                implementation=2, 
-                return_sequences=False, 
-                return_state=False, 
-                go_backwards=False, 
-                stateful=False, 
-                unroll=False,
-                name='lstm')(E)
+    # E = layers.CuDNNLSTM(units=lstm_units,
+    #                     kernel_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
+    #                     recurrent_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
+    #                     bias_initializer='zeros',
+    #                     unit_forget_bias=True,
+    #                     kernel_regularizer=regularizers.l2(weight_decay),
+    #                     recurrent_regularizer=None,
+    #                     bias_regularizer=None,
+    #                     activity_regularizer=None,
+    #                     kernel_constraint=None,
+    #                     recurrent_constraint=None,
+    #                     bias_constraint=None,
+    #                     return_sequences=False,
+    #                     return_state=False,
+    #                     stateful=False,
+    #                     name='lstm')(E)
+    E = layers.LSTM(units=lstm_units,
+    	activation='tanh',
+    	recurrent_activation='hard_sigmoid',
+    	use_bias=True,
+    	kernel_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
+    	recurrent_initializer=initializers.RandomUniform(minval=-0.01, maxval=0.01), 
+    	bias_initializer='zeros',
+    	unit_forget_bias=True,
+    	kernel_regularizer=regularizers.l2(weight_decay),
+    	recurrent_regularizer=None,
+    	bias_regularizer=None,
+    	activity_regularizer=None,
+    	recurrent_constraint=None,
+    	bias_constraint=None,
+    	dropout=0.5,
+    	recurrent_dropout=0.5,
+    	implementation=2,
+    	return_sequences=False,
+    	return_state=False,
+    	go_backwards=False,
+    	stateful=None,
+    	unroll=False,
+    	name='lstm')(E)
 
     #FC8
     E = layers.Dense(units=num_labels,
