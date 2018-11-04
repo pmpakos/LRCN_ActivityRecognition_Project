@@ -1,18 +1,36 @@
-Όλο το project είναι βασισμένο στο paper [Long-term Recurrent Convolutional Networks for Visual Recognition and Description](https://arxiv.org/abs/1411.4389). 
+[Long-term Recurrent Convolutional Networks for Visual Recognition and Description](https://arxiv.org/abs/1411.4389). 
 
-Αλλα χρήσιμα links :
+Useful links :
 
-* http://jeffdonahue.com/lrcn/
+* [Long-term Recurrent Convolutional Networks](http://jeffdonahue.com/lrcn/)
 
-* https://people.eecs.berkeley.edu/~lisa_anne/LRCN_video
+* [Caffe code for LRCN Activity Recognition](https://github.com/LisaAnne/lisa-caffe-public/tree/lstm_video_deploy/examples/LRCN_activity_recognition)
 
-* https://github.com/LisaAnne/lisa-caffe-public/tree/lstm_video_deploy/examples/LRCN_activity_recognition
+* [Sources Activity Recognition 1](http://blog.qure.ai/notes/deep-learning-for-videos-action-recognition-review)
+
+* [Sources Activity Recognition 2](https://blog.coast.ai/five-video-classification-methods-implemented-in-keras-and-tensorflow-99cad29cc0b5)
+
+* [Sources Activity Recognition 3](https://github.com/cherrylawrence/learngit/tree/87e97be5c2b449a5ee61efc826008f45b8b4fcf0/Experiments/python%E5%AE%9E%E7%8E%B0/keras/ActionRecognition-master/ActionRecognition-master)
+
+* [Intuitive understanding of 1D, 2D, and 3D Convolutions in Convolutional Neural Networks](https://stackoverflow.com/questions/42883547/intuitive-understanding-of-1d-2d-and-3d-convolutions-in-convolutional-neural-n)
+
+* [Understanding LSTMs](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+* [Convolution3D for Keras - Video Classification](https://github.com/axon-research/c3d-keras)
+
+* [Using convolutional LSTM networks (or other models) to classify videos](https://github.com/sofiabroome/painface-recognition/blob/master/models.py)
+
+* [ImageNet Models (Keras)](https://github.com/dandxy89/ImageModels)
+
+* [Caffe prototxt Model Visualizer](http://ethereon.github.io/netscope/#/editor)
+
+* [Jupyter-notebooks (Keras)](https://github.com/fchollet/deep-learning-with-python-notebooks)
 
 
 ---
 
 
-1) To dataset που χρησιμοποιούμε είναι το [UCF-101](http://crcv.ucf.edu/data/UCF101.php). Κατέβασμα dataset [frames και flow images](https://drive.google.com/drive/folders/0B_U4GvmpCOecMVIwS1lkSm5KTGM) και εκτέλεση των scripts extraction_{frames,flow} 
+1) To dataset που χρησιμοποιούμε είναι το [UCF-101](http://crcv.ucf.edu/data/UCF101.php). Κατέβασμα dataset ([frames & flow images](https://drive.google.com/drive/folders/0B_U4GvmpCOecMVIwS1lkSm5KTGM)) και εκτέλεση των scripts extraction_{frames,flow} 
 Η χρήση flow images θα αποδειχθεί στη συνέχεια χρήσιμη γιατί μαθαίνει features που μέσω των rgb εικόνων δεν μπορούν να συλληφθούν. 
 
 
@@ -45,7 +63,7 @@
 
 4) **Notebook [SingleFrameTraining_Inception_RGB](SingleFrameTraining_Inception_RGB.ipynb)**. Εξετάζεται ένα διαφορετικό δίκτυο, που βασίζεται σε έτοιμη υλοποίηση του Keras, και σε single frame δίνει καλύτερα αποτελέσματα ταξινόμησης. Δεν υπάρχει υλοποίηση για FLOW, καθώς το training θα απαιτούσε πολύ περισσότερες επαναλήψεις από το RGB.
 
-5) **Notebook [SingleFramePredictions](SingleFramePredictions.ipynb)**. Δοκιμές διαφορετικών συνδυασμών των frame και flow networks, δίνοντας μεγαλύτερη βαρύτητα σε ένα δίκτυο κάθε φορά. Χρησιμοποείται η τεχνική late fusion, δηλαδή κάθε δίκτυο δίνει δική του πρόβλεψη και στη συνέχεια γίνεται averaging των προβλέψεων. Παρατηρούμε ότι ο καλύτερος συνδυασμός δίνεται για 2/3 flow, 1/3 rgb προβλέψεις, δίνοντας μεγαλύτερη βαρύτητα δηλαδή στο τι προβλέψεις δίνονται από flow images.
+5) **Notebook [SingleFramePredictions](SingleFramePredictions.ipynb)**. Δοκιμές διαφορετικών συνδυασμών των frame και flow networks, δίνοντας μεγαλύτερη βαρύτητα σε ένα δίκτυο κάθε φορά. Χρησιμοποείται η τεχνική late fusion, δηλαδή κάθε δίκτυο δίνει δική του πρόβλεψη και στη συνέχεια γίνεται averaging των προβλέψεων. Παρατηρούμε ότι ο καλύτερος συνδυασμός δίνεται για 2/3 flow, 1/3 rgb προβλέψεις, δίνοντας μεγαλύτερη βαρύτητα δηλαδή στο τι προβλέψεις δίνονται από flow images. Για συνδυασμό με το inception rgb ο καλύτερος συνδυασμός είναι 1/2 flow, 1/2 rgb.
 
 ---
 
@@ -54,7 +72,13 @@
 
 6) **Notebooks [VideoTraining_LSTM_RGB](VideoTraining_LSTM_RGB.ipynb) & [VideoTraining_LSTM_FLOW](VideoTraining_LSTM_FLOW.ipynb)**. Γίνεται εκπαίδευση του δικτύου αυτού με random 16-frames clips από το dataset, βοηθώντας έτσι και στο augmentation του dataset.
 
-7) **Notebook [VideoSequencePredictions](VideoSequencePredictions.ipynb)**. Λαμβάνονται 16-frame clips από κάθε video, με stide 8. Παίρνοντας το average των προβλέψεων για κάθε τέτοιο clip, λαμβάνουμε την συνολική πρόβλεψη για το video.
+7) **Notebook [VideoTraining_LSTM_FLOW_1024](VideoTraining_LSTM_FLOW_1024.ipynb)**. Γίνεται εκπαίδευση του δικτύου για flow images με 1024 αντί για 512 lstm units.
+
+8) **Notebook [VideoSequencePredictions](VideoSequencePredictions.ipynb)**. Λαμβάνονται 16-frame clips από κάθε video, με stride 8. Παίρνοντας το average των προβλέψεων για κάθε τέτοιο clip, λαμβάνουμε την συνολική πρόβλεψη για το video.
+
+---
+
+9) Στο **[app.py](./app.py)** γίνεται αξιολόγηση των διαφόρων ταξινομητών και συνδυασμών αυτών για ένα βίντεο ξεχωριστά.
 
 ---
 
@@ -64,10 +88,12 @@
 
 1) caffenet_single_rgb 
 
-2) caffenet_single_flow και caffenet_single_flow_extra. Στο extra, γίνεται για μερικές ακόμα επαναλήψεις training προκειμένου να πετύχει μείωσει του training loss.
+2) caffenet_single_flow
 
 3) inception_rgb
 
-4) lstm_rgb_512
+4) lstm_rgb
 
-5) lstm_flow_512
+5) lstm_flow
+
+6) lstm_flow_1024
