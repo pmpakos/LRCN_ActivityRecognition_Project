@@ -50,6 +50,8 @@ Useful links :
 
 Στο **[video_processing.py](./video_processing.py)** ορίζονται οι συναρτήσεις προεπεξεργασίας των video για το LSTM network.
 
+Στο **[results_functions.py](./results_functions.py)** ορίζονται οι συναρτήσεις παρουσίασης των τελικών αποτελεσμάτων.
+
 ---
 
 # Single Frame Network
@@ -82,20 +84,27 @@ Useful links :
 
 10) Στο **[Final_Results](./Final_Results.ipynb)** γίνεται παρουσίαση διαφόρων αποτελεσμάτων.
 
+11) Στο φάκελο **Results** παρουσιάζονται τα αποτελέσματα που παράγονται κατά τη διάρκεια του testing στα notebooks **[SingleFramePredictions](SingleFramePredictions.ipynb) & [VideoSequencePredictions](VideoSequencePredictions.ipynb)**. Εκεί υπάρχουν αναλυτικά ανά μοντέλο και συνδυασμό αυτών:
+>>a) Οι προβλέψεις για κάθε video του test set
+
+>>b) Confidence Matrices που οπτικοποιούν το πόσο "καλό" είναι κάθε μοντέλο
+
+>>c) Πόσα video ανά κατηγορία προέβλεψε σωστά κάθε μοντέλο.
+
 ---
 
 Τα αποθηκευμένα βάρη των εκπαιδευμένων μοντέλων μπορούν να βρεθούν [εδώ](https://drive.google.com/drive/folders/1Eb_qrN7q7YJRAvzqDjXiVq-RRxp7Prhw).
 
-0) pretrained_model : Τα βάρη που στο paper χρησιμοποιούν σαν initialization για το single frame network, pretrained στο ILSVRC-2012 dataset.
+0) *pretrained_model* : Τα βάρη που στο paper χρησιμοποιούν σαν initialization για το single frame network, pretrained στο ILSVRC-2012 dataset.
 
-1) caffenet_single_rgb 
+1) *caffenet_single_rgb*
 
-2) caffenet_single_flow
+2) *caffenet_single_flow*
 
-3) inception_rgb
+3) *inception_rgb*
 
-4) lstm_rgb
+4) *lstm_rgb*
 
-5) lstm_flow
+5) *lstm_flow*
 
-6) lstm_flow_1024
+6) *lstm_flow_1024*
