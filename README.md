@@ -87,7 +87,7 @@ Useful links :
 11) Στο φάκελο **Results** παρουσιάζονται τα αποτελέσματα που παράγονται κατά τη διάρκεια του testing στα notebooks **[SingleFramePredictions](SingleFramePredictions.ipynb) & [VideoSequencePredictions](VideoSequencePredictions.ipynb)**. Εκεί υπάρχουν αναλυτικά ανά μοντέλο και συνδυασμό αυτών:
 >>a) Οι προβλέψεις για κάθε video του test set
 
->>b) Confidence Matrices που οπτικοποιούν το πόσο "καλό" είναι κάθε μοντέλο
+>>b) Confusion Matrices που οπτικοποιούν το πόσο "καλό" είναι κάθε μοντέλο
 
 >>c) Πόσα video ανά κατηγορία προέβλεψε σωστά κάθε μοντέλο.
 
